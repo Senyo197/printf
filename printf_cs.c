@@ -8,8 +8,7 @@
 int _printf(const char *format, ...)
 {
 	int z;
-	char c;
-	char *s;
+	char c, *s;
 	char appr;
 	va_list agmts;
 
@@ -31,6 +30,7 @@ int _printf(const char *format, ...)
 					break;
 				case '%':
 					_putchar('%');
+					_putchar(appr);
 					break;
 				default:
 					_putchar('%');
