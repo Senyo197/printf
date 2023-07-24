@@ -3,14 +3,14 @@
 /**
   *_printf - prints format specificier of c, s and %
   *@format: a character string
-  */
+ *Return: 0
+ */
 int _printf(const char *format, ...)
 {
 	int z;
 	char c;
 	char *s;
 	char appr;
-
 	va_list agmts;
 
 	va_start(agmts, format);
@@ -38,14 +38,13 @@ int _printf(const char *format, ...)
 					_putchar(format[z]);
 					break;
 			}
+			z++;
 		}
 		else
 		{
 			_putchar(format[z]);
 		}
-
 	}
-
 	va_end(agmts);
 	return (0);
 }
