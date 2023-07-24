@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 
 	va_start(agmts, format);
 
-	for (z = 0; z != '\0'; z++)
+	for (z = 0; format[z] != '\0'; z++)
 	{
 		if (format[z] == '%')
 		{
@@ -24,7 +24,7 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					c = va_arg(agmts, int);
-					_putchar(c);
+					putchar(c);
 					break;
 				case 's':
 					s = va_arg(agmts, char *);
@@ -34,15 +34,15 @@ int _printf(const char *format, ...)
 					_putchar('%');
 					break;
 				default:
-					_putchar('%');
-					_putchar(format[z]);
+					putchar('%');
+					putchar(format[z]);
 					break;
 			}
 			z++;
 		}
 		else
 		{
-			_putchar(format[z]);
+			putchar(format[z]);
 		}
 	}
 	va_end(agmts);
