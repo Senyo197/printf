@@ -8,7 +8,8 @@ int _printf(const char *format, ...)
 {
 	int z;
 	char c;
-	char *s
+	char *s;
+	char appr;
 
 	va_list agmts;
 
@@ -18,7 +19,8 @@ int _printf(const char *format, ...)
 	{
 		if (format[z] == '%')
 		{
-			switch (++format)
+			appr = format[z + 1];
+			switch (appr)
 			{
 				case 'c':
 					c = va_arg(agmts, int);
