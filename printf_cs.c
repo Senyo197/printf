@@ -1,50 +1,65 @@
 #include "main.h"
 
 /**
+  *prnt_buf - print buffer content
+  *@buff: array of characters
+  *@buff_indx: buffer index
+  */
+void prnt_buf(char buff[], int *buff_indx)
+{
+	if (*buff_indx > 0)
+	{
+		write(1, &buff[0], *buff_indx);
+
+		*buff_indx = 0;
+	}
+}
+
+/**
   *_printf - prints format specificier of c, s and %
   *@format: a character string
  *Return: 0
  */
 int _printf(const char *format, ...)
 {
-	int z;
-	char c, *s;
-	char appr;
+	int z, p1 = 0, p2 = 0;
+	int width, size, precision, flags, buff_indx = 0;
 	va_list agmts;
+	char buff[BUF_SIZE];
+
+	if (format == NULL)
+	{
+		return (-1);
+	}
 
 	va_start(agmts, format);
-	for (z = 0; format[z] != '\0'; z++)
+	for (z = 0; format && format[z] != '\0'; z++)
 	{
 		if (format[z] == '%')
 		{
-			appr = format[z + 1];
-			switch (appr)
+			buff[buff_indx++] = format[z];
+
+			if (buff_indx == BUF_SIZE)
 			{
-				case 'c':
-					c = va_arg(agmts, int);
-					_putchar(c);
-					break;
-				case 's':
-					s = va_arg(agmts, char *);
-					printf("%s", s);
-					break;
-				case '%':
-					_putchar('%');
-					_putchar(appr);
-					break;
-				default:
-					_putchar('%');
-					_putchar(format[z]);
-					break;
+				prnt_buf(buff, &buff_indx);
 			}
-			z++;
+			p2++;
 		}
 		else
 		{
-			_putchar(format[z]);
+			prnt_buf(buff, &buff_indx);
+			flags = get_flags(format, &z);
+			width = get_width(format, &z, agmts);
+			size = get_size(format, &z);
+			precision = get_precision(format, &z, agmts);
+			z++;
+			p1 = handle_print(format, &z, agmts, buff, size, flags, width,
+					precision);
+			if (p1 == -1)
+				return (-1);
+			p2 += p1;
 		}
 	}
 	va_end(agmts);
-	_putchar('\n');
-	return (0);
+	return (p2);
 }
