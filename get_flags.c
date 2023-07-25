@@ -2,8 +2,8 @@
 
 /**
  * get_flags - Calculates active flags
- * @format: Formatted string in which to print the arguments
- * @i: take a parameter.
+ * @format: string format
+i * @i: takes a parameter.
  * Return: Flags:
  */
 int get_flags(const char *format, int *i)
@@ -18,7 +18,7 @@ int get_flags(const char *format, int *i)
 	for (current_index = *i + 1; format[current_index] != '\0'; current_index++)
 	{
 		for (r = 0; FLAGS_CH[r] != '\0'; r++)
-			if (format[current_index] == FLAGS_CH[j])
+			if (format[current_index] == FLAGS_CH[r])
 			{
 				flags |= FLAGS_ARR[r];
 				break;
