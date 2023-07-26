@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
   *print_unsigned - print unsigned characters
   *@buffer: array fo characters
@@ -10,6 +9,7 @@
   *@flags: gets flags
   *Return: printed characters
   */
+
 int print_unsigned(va_list types, char buffer[], int size, int precision,
 		int width, int flags)
 {
