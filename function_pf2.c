@@ -29,7 +29,7 @@ int print_unsigned(va_list types, char buffer[], int size, int precision,
 		num /= 10;
 	}
 	a++;
-	return (write_unsgnd(0, i, buffer, size, width, flags, precision));
+	return (write_unsgnd(0, a, buffer, size, width, flags, precision));
 }
 
 /**
@@ -68,7 +68,7 @@ int print_octal(va_list types, char buffer[], int size, int flags, int width,
 		buffer[a--] = '0';
 	a++;
 
-	return (write_unsgnd(0, i, buffer, size, width, flags, precision));
+	return (write_unsgnd(0, a, buffer, size, width, flags, precision));
 }
 
 /**
@@ -81,7 +81,7 @@ int print_octal(va_list types, char buffer[], int size, int flags, int width,
   *@precision: specifies precision
   *Return: printed characters
   */
-int print_hexadecimal(va_list types, int size, char buffer[], int width,
+int print_hexadecimal(va_list types, char buffer[], int size, int width,
 		int precision, int flags)
 {
 	return (print_hexa(types, "0123456789abcdef", buffer, flags, width, size,
@@ -145,5 +145,5 @@ int print_hexa(va_list types, char map_to[], char buffer[],
 	}
 	a++;
 
-	return (write_unsgnd(0, i, buffer, flags, width, size, precision));
+	return (write_unsgnd(0, a, buffer, flags, width, size, precision));
 }

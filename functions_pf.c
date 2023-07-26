@@ -42,7 +42,7 @@ int print_string(va_list types, char buffer[], int width, int size, int flags,
 
 	if (str == NULL)
 	{
-		str == "(null)";
+		str = "(null)";
 		if (precision >= 6)
 			str = " ";
 	}
@@ -83,8 +83,8 @@ int print_string(va_list types, char buffer[], int width, int size, int flags,
   *@flags: gets flags
 *Return: printed characters
 */
-int print_percent(va_list types, int size, int flags, int precision, int width,
-		char buffer[])
+int print_percent(va_list types, char buffer[], int size, int flags,
+		int precision, int width)
 {
 	UNUSED(buffer);
 	UNUSED(size);
@@ -105,8 +105,7 @@ int print_percent(va_list types, int size, int flags, int precision, int width,
   *@precision: specifies precision
   *Return: printed characters
   */
-int print_int(va_list types, int size, int flags, int width, int precision,
-		char buffer[])
+int print_int(va_list types, char buffer[], int size, int flags, int width, int precision)
 {
 	int i = BUF_SIZE - 2;
 	int is_negative = 0;
